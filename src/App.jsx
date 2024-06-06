@@ -1,23 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react'
+import { useState } from 'react'
 
 const App = () => {
-    let [count , setCount] = useState(0);
+    let [isOpen, setisOpen] = useState(true);
+  return (<>
+  <button onClick={()=>setisOpen((prev)=> !prev)}>
 
-function countUp() {
-    setCount(  (prev)=> prev + 1   );
-};
-
-let a =2;
-/* use Effect hook */
-
-    useEffect(()=> {
-        countUp();
-    } , [] )
-
-  return ( <>
-    <h1>count   - {count}  </h1>
-    <button  onClick={ ()=> countUp() } >click me</button>
-    </> )
+  {isOpen===true ? "Close x" : "Open +" } {/* ternary operator */}
+  
+  </button>
+   {isOpen && <h1>Hello world</h1>}
+  </>)
 }
 
-export default App;
+export default App
