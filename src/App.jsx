@@ -1,15 +1,13 @@
-import React from 'react'
-import { useState } from 'react'
+import React from 'react';
+import mainImage from "./assets/images/abc.png";
+
 
 const App = () => {
-    let [isOpen, setisOpen] = useState(true);
-  return (<>
-  <button onClick={()=>setisOpen((prev)=> !prev)}>
+  return (<>  
+  <img src="src\assets\images\abc.png" alt="" />
+  <img src="../src/assets/images/abc.png" alt="" />
+  <img src={mainImage} alt="" />
 
-  {isOpen===true ? "Close x" : "Open +" } {/* ternary operator */}
-  
-  </button>
-   {isOpen && <h1>Hello world</h1>}
   </>)
 }
 
