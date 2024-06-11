@@ -1,14 +1,12 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 
-const About = () => {
+const Contact = () => {
   return (<>
 
-
       <br />
-      Welcome About
-
+      Welcome Contact
     </>)
 }
 
-export default About
+export default Contact
