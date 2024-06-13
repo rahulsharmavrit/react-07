@@ -1,23 +1,25 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 //image , heading, description,
 
-const Card = (props) => {
+const Card = ({image,heading,description,id}) => {
+
   return (<>
 
         <div className="card" style={{width : 300}}>
             <div className="card-header">
-                <span>{props.heading}</span>
+               <span className="text-danger">{`(${id})`}</span> <span>{heading}</span> 
             </div>
 
             <div className="card-body">
-                <img src={props.image} alt="img" style={{height : 250 , width : "100%"}} />
-                <p>{props.description}</p>
+                <img src={image} alt="img" style={{height : 250 , width : "100%"}} />
+                <p>{description}</p>
             </div>
             <div className="card-footer">
-                <button>Read more</button>
+               <NavLink to={`/products/${id}`}> <button>Read more</button></NavLink>
             </div>
         </div>
-    
+
     </>)
 }
 
