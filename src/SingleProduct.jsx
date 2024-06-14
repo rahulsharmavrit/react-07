@@ -1,10 +1,9 @@
 import React from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, useSearchParams } from 'react-router-dom'
 
 const SingleProduct = () => {
 
     let params = useParams();
-    console.log(params , 'parasm')
  
     const data = [
         {
