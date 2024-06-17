@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Card from './Card'
+import { GlobalData } from './App'
 
 const Product = () => {
 
+  let mystore = useContext(GlobalData)
 
   const data = [
     {
@@ -68,6 +70,8 @@ const Product = () => {
   ]
   return (<>
             <div className="container">
+
+           <p>usecontext data = {mystore.test}</p>
                 <div className="row">
                      
     {

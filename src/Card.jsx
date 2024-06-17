@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+import { GlobalData } from './App'
 //image , heading, description,
 
 const Card = ({image,heading,description,id}) => {
-
+    let mystore = useContext(GlobalData)
+    
   return (<>
 
         <div className="card" style={{width : 300}}>
             <div className="card-header">
+            {mystore.test}
                <span className="text-danger">{`(${id})`}</span> <span>{heading}</span> 
             </div>
 

@@ -67,11 +67,7 @@ const SingleProduct = () => {
           }
         }
       ]
-
-   
        let myProductData =  data.filter((item) => item.id === parseInt(params.id) )
-
-       console.log(myProductData , 'myProductData')
 
   return (<>
   
