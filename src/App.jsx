@@ -1,27 +1,34 @@
-import React, { createContext } from 'react';
+import React, { createContext, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from './Home';
-import About from './About';
-import Product from './Product';
-import SingleProduct from './SingleProduct';
-import Contact from './Contact';
+// import About from './About';
+// import Product from './Product';
+// import SingleProduct from './SingleProduct';
+// import Contact from './Contact';
+
+let profile = {
+  name : "Rahul Sharma",
+  age : "00",
+  address  : "damak"
+}
+let skills = ["node","react","sql"];
+let callNotification = () => alert("called ok");
 
 export const GlobalData = createContext();
 
 const App = () => {
+  let [count,setCount] = useState(0);
 
   return (<>
-    <GlobalData.Provider value={{test : "ok tested" , data : "ok data"}} >
+    <GlobalData.Provider value={{profile,skills,callNotification,count,setCount}} >
         <Routes>
           <Route path='/' element={<Home />}  />
-          <Route path='/about' element={<About />}  />
+
+
+          {/* <Route path='/about' element={<About />}  />
           <Route path='/products' element={<Product />}  />
-         
-
           <Route path='/products/:id' element={<SingleProduct />}  />
-         
-
-          <Route path='/contact' element={<Contact />}  />
+          <Route path='/contact' element={<Contact />}  /> */}
 
         </Routes>
         </GlobalData.Provider>
