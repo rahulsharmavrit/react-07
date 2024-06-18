@@ -1,24 +1,35 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { GlobalData } from './App'
+import Profile from './Profile';
+import axios from 'axios';
+import Card from './Card';
+
 
 const Home = () => {
-  let data =  useContext(GlobalData);
-  console.log(data , 'data')
-  return (<>
-          <ul className="list-unstyled">
-            <li>Name : {data.profile.name} </li>
-            <li>Age : {data.profile.age} </li>
-            <li>Address :  {data.profile.address}</li>
-            <li>Slikks:  {data.skills.map((item ,index)=> `${item} ${data.skills.length-1>index ? "," : ""}` )} </li>
-            <li> <button onClick={data.callNotification}>Hire me</button> </li>
 
-            <li> count : {data.count}  , <button onClick={()=> data.setCount((prev) => prev+1)} >+</button> </li>
-          </ul>
+  let [products,setProducts] = useState([]);
+
+  let callme =  async () => {
+   let response = await axios.get("https://jsonplaceholder.typicode.com/photos?_start=1&_limit=100");
+   setProducts(()=>response.data);
+  };
+
+  
+  useEffect(()=> {
+    callme()
+  }, [])
+
+  return (<>
+      <div className="row">
+      {
+        products.map((item,index)=> <div className="col-4 my-3">
+        <Card key={index}  id={item.id} image={item.
+thumbnailUrl
+}  heading={item.title} description={item.url} /> 
+        </div> )
+      }
+      </div>
       </>)
 }
 
 export default Home;
-
-
-let testfun = () => "hello";
-let testmyfun = () => {  return "hello" };
