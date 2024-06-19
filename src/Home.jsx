@@ -1,35 +1,55 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { GlobalData } from './App'
-import Profile from './Profile';
-import axios from 'axios';
-import Card from './Card';
-
+import React, { useEffect, useState } from 'react'
+import { deleteCategoryApi, getCategoryApi } from './services/services.index'
+import { Table } from 'react-bootstrap';
 
 const Home = () => {
+  const [data,setData] = useState([]);
 
-  let [products,setProducts] = useState([]);
+  const handelRequest = async () => {
+    let res = await getCategoryApi();
+    setData (() => res);
+  }
+  const handelDelete = async (id) => {
+    deleteCategoryApi(id)
+    handelRequest();
+  }
 
-  let callme =  async () => {
-   let response = await axios.get("https://jsonplaceholder.typicode.com/photos?_start=1&_limit=100");
-   setProducts(()=>response.data);
-  };
-
-  
-  useEffect(()=> {
-    callme()
-  }, [])
-
+  useEffect(()=> {handelRequest() }, [data] )
   return (<>
-      <div className="row">
-      {
-        products.map((item,index)=> <div className="col-4 my-3">
-        <Card key={index}  id={item.id} image={item.
-thumbnailUrl
-}  heading={item.title} description={item.url} /> 
-        </div> )
-      }
-      </div>
-      </>)
+  
+      <Table striped hover>
+        <thead>
+          <tr>
+            <th style={{minWidth : 300}}>ID</th>
+            <th style={{minWidth : 300}}>Name</th>
+            <th style={{minWidth : 300}}>Description</th>
+            <th style={{minWidth : 300}}>ACtion</th>
+          </tr>
+        </thead>
+
+
+        <tbody>
+      
+            {
+              data?.data?.data?.map((item) => {
+                return (<>
+                  <tr>
+                  <td>{item.id}</td>
+            <td>{item.name}</td>
+            <td>{item.description}</td>
+       
+                <td> <button className="btn-danger btn me-2" onClick={()=>{handelDelete(item.id) }}>Delete</button>
+                <button className="btn-warning btn">Update</button>
+                 </td>
+            </tr>
+                </>)
+              })
+            }
+         
+        </tbody>
+      </Table>
+  
+  </>)
 }
 
-export default Home;
+export default Home
